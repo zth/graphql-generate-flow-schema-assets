@@ -1,0 +1,41 @@
+{
+  "name": "graphql-generate-flow-schema-assets",
+  "version": "0.9.0",
+  "author": "Gabriel Nordeborn",
+  "license": "MIT",
+  "repository": "https://github.com/zth/json-to-flowtype-generator",
+  "description": "Generate Flow assets from GraphQL schema.",
+  "main": "./src/index.js",
+  "keywords": [
+    "graphql",
+    "schema",
+    "flow",
+    "flowtype",
+    "js",
+    "generator",
+    "types"
+  ],
+  "files": [
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "src",
+    "yarn.lock"
+  ],
+  "bin": {
+    "graphql-generate-flow-schema-assets": "./src/index.js"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "commander": "^2.12.2",
+    "prettier": "^1.9.1"
+  },
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
+}

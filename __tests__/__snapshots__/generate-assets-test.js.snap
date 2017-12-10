@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Generate assets should generate enums 1`] = `
+"// @flow
+
+/**
+ * THIS FILE IS AUTO GENERATED, DO NOT EDIT DIRECTLY.
+ */
+
+export type UserRolesEnum = 'User' | 'Admin' | 'Collaborator';
+
+export const UserRoles: {|
+  +User: 'User',
+  +Admin: 'Admin',
+  +Collaborator: 'Collaborator'
+|} = { User: 'User', Admin: 'Admin', Collaborator: 'Collaborator' };
+
+export type UserStatusesEnum = 'Inactive' | 'Active' | 'Suspended' | 'Banned';
+
+export const UserStatuses: {|
+  +Inactive: 'Inactive',
+  +Active: 'Active',
+  +Suspended: 'Suspended',
+  +Banned: 'Banned'
+|} = {
+  Inactive: 'Inactive',
+  Active: 'Active',
+  Suspended: 'Suspended',
+  Banned: 'Banned'
+};
+"
+`;
+
+exports[`Generate assets should generate object types 1`] = `
+"// @flow
+
+/**
+ * THIS FILE IS AUTO GENERATED, DO NOT EDIT DIRECTLY.
+ */
+
+export type ObjectTypesEnum =
+  | 'Root'
+  | 'Film'
+  | 'Species'
+  | 'Planet'
+  | 'Person'
+  | 'Starship'
+  | 'Vehicle';
+
+export const ObjectTypes: {|
+  +Root: 'Root',
+  +Film: 'Film',
+  +Species: 'Species',
+  +Planet: 'Planet',
+  +Person: 'Person',
+  +Starship: 'Starship',
+  +Vehicle: 'Vehicle'
+|} = {
+  Root: 'Root',
+  Film: 'Film',
+  Species: 'Species',
+  Planet: 'Planet',
+  Person: 'Person',
+  Starship: 'Starship',
+  Vehicle: 'Vehicle'
+};
+"
+`;

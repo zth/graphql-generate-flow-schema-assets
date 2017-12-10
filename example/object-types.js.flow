@@ -1,0 +1,32 @@
+// @flow
+
+/**
+ * THIS FILE IS AUTO GENERATED, DO NOT EDIT DIRECTLY.
+ */
+
+export type ObjectTypesEnum =
+  | 'Root'
+  | 'Film'
+  | 'Species'
+  | 'Planet'
+  | 'Person'
+  | 'Starship'
+  | 'Vehicle';
+
+export const ObjectTypes: {|
+  +Root: 'Root',
+  +Film: 'Film',
+  +Species: 'Species',
+  +Planet: 'Planet',
+  +Person: 'Person',
+  +Starship: 'Starship',
+  +Vehicle: 'Vehicle'
+|} = {
+  Root: 'Root',
+  Film: 'Film',
+  Species: 'Species',
+  Planet: 'Planet',
+  Person: 'Person',
+  Starship: 'Starship',
+  Vehicle: 'Vehicle'
+};

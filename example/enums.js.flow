@@ -1,0 +1,27 @@
+// @flow
+
+/**
+ * THIS FILE IS AUTO GENERATED, DO NOT EDIT DIRECTLY.
+ */
+
+export type UserRolesEnum = 'User' | 'Admin' | 'Collaborator';
+
+export const UserRoles: {|
+  +User: 'User',
+  +Admin: 'Admin',
+  +Collaborator: 'Collaborator'
+|} = { User: 'User', Admin: 'Admin', Collaborator: 'Collaborator' };
+
+export type UserStatusesEnum = 'Inactive' | 'Active' | 'Suspended' | 'Banned';
+
+export const UserStatuses: {|
+  +Inactive: 'Inactive',
+  +Active: 'Active',
+  +Suspended: 'Suspended',
+  +Banned: 'Banned'
+|} = {
+  Inactive: 'Inactive',
+  Active: 'Active',
+  Suspended: 'Suspended',
+  Banned: 'Banned'
+};
