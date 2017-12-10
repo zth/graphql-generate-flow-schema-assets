@@ -66,7 +66,7 @@ both as types and as properties on one root object. This means that instead of d
 
 ```
 if (userOrSomeOtherType.__typename === 'User') {
-    ...
+  ...
 ```
 
 You can do:
@@ -74,8 +74,8 @@ You can do:
 ```
 import { ObjectTypes } from '../path/to/object-types.js';
 
-if (user.status === ObjectTypes.User) {
-    ...
+if (userOrSomeOtherType.__typename === ObjectTypes.User) {
+  ...
 ```
 
 ...meaning it'll be type checked, auto completed by your editor/IDE, and all 
