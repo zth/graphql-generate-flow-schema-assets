@@ -47,7 +47,7 @@ if (user.status === 'Active') {
 
 You can do:
 
-```
+```javascript
 import { UserStatuses } from '../path/to/enums.js';
 
 if (user.status === UserStatuses.Active) {
@@ -64,14 +64,14 @@ graphql-generate-flow-schema-assets -s path/to/schema.json --object-types
 This will generate a file containing all object types from your GraphQL schema
 both as types and as properties on one root object. This means that instead of doing:
 
-```
+```javascript
 if (userOrSomeOtherType.__typename === 'User') {
   ...
 ```
 
 You can do:
 
-```
+```javascript
 import { ObjectTypes } from '../path/to/object-types.js';
 
 if (userOrSomeOtherType.__typename === ObjectTypes.User) {
