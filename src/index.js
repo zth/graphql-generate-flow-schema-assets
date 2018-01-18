@@ -31,7 +31,20 @@ try {
   process.exit(0);
 }
 
-const types = schema.__schema.types;
+let types;
+
+if (schema.hasOwnProperty('__schema')) {
+  types = schema.__schema.types;
+} else if (
+  schema.hasOwnProperty('data') &&
+  schema.data.hasOwnProperty('__schema')
+) {
+  types = schema.data.__schema.types;
+} else {
+  throw new Error(`Could not find types in schema. 
+  Please make sure the schema is available on the prop '__schema' on the first level of the schema.json, 
+  or nested under a prop called 'data' on the first level of the schema.json.`);
+}
 
 /**
  * ENUMS
