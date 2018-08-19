@@ -80,3 +80,28 @@ if (userOrSomeOtherType.__typename === ObjectTypes.User) {
 
 ...meaning it'll be type checked, auto completed by your editor/IDE, and all 
 of that good stuff.
+
+### Extra
+The lib `flow-enum-validator` is well suited to work with the enum output of this library to help validate unknown strings to enums. An example:
+
+```javascript
+// @flow
+import { UserStatuses } from '../path/to/enums.js';
+import { createEnumValidator } from 'flow-enum-validator';
+
+// This will return a function that takes a string and returns if it's a valid part of the UserStatuses enum object, or void if it's not
+const validateUserStatus = createEnumValidator(UserStatuses);
+
+const userStatus = validateUserStatus(someRandomStringHere);
+/**
+ * Say UserStatuses is an object that looks like this: { Active: 'Active', Inactive: 'Inactive' }
+ * Flow will now have refined userStatus to 'Active' | 'Inactive' | null | void.
+ */
+
+if (userStatus) {
+  // userStatus is now 'Active' | 'Inactive'
+}
+
+```
+
+Check out `flow-enum-validator` [here for more info and examples](https://github.com/zth/flow-enum-validator).

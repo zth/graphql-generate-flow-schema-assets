@@ -6,10 +6,11 @@ const chalk = require('chalk');
 const packageJson = require('../package');
 const generateObjectTypes = require('./generateObjectTypes');
 const generateEnums = require('./generateEnums');
+const parseSchema = require('./parseSchema');
 
 program
   .version(packageJson.version)
-  .option('-s, --schema <path>', 'Path to schema.json.')
+  .option('-s, --schema <path>', 'Path to schema.json or schema.graphql.')
   .option('-e, --enums', 'Generate enums.')
   .option(
     '--enums-file-path <path>',
@@ -22,61 +23,61 @@ program
   )
   .parse(process.argv);
 
-let schema;
+(async function() {
+  let schema;
 
-try {
-  schema = require(path.resolve(program.schema));
-} catch (e) {
-  console.error('Could not load schema.');
-  process.exit(0);
-}
+  try {
+    const rawSchema = fs.readFileSync(path.resolve(program.schema), 'utf8');
+    schema = await parseSchema(rawSchema, program.schema);
+  } catch (e) {
+    console.error('Could not load schema.');
+    process.exit(0);
+  }
 
-let types;
+  let types;
 
-if (schema.hasOwnProperty('__schema')) {
-  types = schema.__schema.types;
-} else if (
-  schema.hasOwnProperty('data') &&
-  schema.data.hasOwnProperty('__schema')
-) {
-  types = schema.data.__schema.types;
-} else {
-  throw new Error(`Could not find types in schema. 
+  if (schema.__schema) {
+    types = schema.__schema.types;
+  } else if (schema.data && schema.data.__schema) {
+    types = schema.data.__schema.types;
+  } else {
+    throw new Error(`Could not find types in schema. 
   Please make sure the schema is available on the prop '__schema' on the first level of the schema.json, 
   or nested under a prop called 'data' on the first level of the schema.json.`);
-}
+  }
 
-/**
- * ENUMS
- */
+  /**
+   * ENUMS
+   */
 
-if (!!program.enums) {
-  console.log(chalk.yellow('Generating enums...'));
-  const enumOutput = generateEnums(types);
-  const enumsFilePath = path.resolve(
-    typeof program.enumsFilePath === 'string'
-      ? program.enumsFilePath
-      : './enums.js'
-  );
+  if (!!program.enums) {
+    console.log(chalk.yellow('Generating enums...'));
+    const enumOutput = generateEnums(types);
+    const enumsFilePath = path.resolve(
+      typeof program.enumsFilePath === 'string'
+        ? program.enumsFilePath
+        : './enums.js'
+    );
 
-  console.log(chalk.green(`Enums generated to file ${enumsFilePath}`));
-  fs.writeFileSync(enumsFilePath, enumOutput);
-}
+    console.log(chalk.green(`Enums generated to file ${enumsFilePath}`));
+    fs.writeFileSync(enumsFilePath, enumOutput);
+  }
 
-/**
- * OBJECT TYPES
- */
+  /**
+   * OBJECT TYPES
+   */
 
-if (!!program.objectTypes) {
-  console.log(chalk.yellow('Generating object types...'));
-  const objectTypesOutput = generateObjectTypes(types);
-  const objectTypesFilePath = path.resolve(
-    typeof program.objectTypesFilePath === 'string'
-      ? program.objectTypesFilePath
-      : './object-types.js'
-  );
-  console.log(
-    chalk.green(`Object types generated to file ${objectTypesFilePath}`)
-  );
-  fs.writeFileSync(objectTypesFilePath, objectTypesOutput);
-}
+  if (!!program.objectTypes) {
+    console.log(chalk.yellow('Generating object types...'));
+    const objectTypesOutput = generateObjectTypes(types);
+    const objectTypesFilePath = path.resolve(
+      typeof program.objectTypesFilePath === 'string'
+        ? program.objectTypesFilePath
+        : './object-types.js'
+    );
+    console.log(
+      chalk.green(`Object types generated to file ${objectTypesFilePath}`)
+    );
+    fs.writeFileSync(objectTypesFilePath, objectTypesOutput);
+  }
+})();

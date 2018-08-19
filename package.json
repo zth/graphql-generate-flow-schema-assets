@@ -1,7 +1,7 @@
 {
   "name": "graphql-generate-flow-schema-assets",
-  "version": "0.9.2",
-  "author": "Gabriel Nordeborn",
+  "version": "1.0.0",
+  "author": "Gabriel Nrodeborn",
   "license": "MIT",
   "repository": "https://github.com/zth/graphql-generate-flow-schema-assets.git",
   "description": "Generate Flow assets from GraphQL schema.",
@@ -11,6 +11,10 @@
     "schema",
     "flow",
     "flowtype",
+    "relay",
+    "relaymodern",
+    "apollo",
+    "apollocodegen",
     "js",
     "generator",
     "types"
@@ -28,11 +32,10 @@
   "scripts": {
     "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "chalk": "^2.3.0",
     "commander": "^2.12.2",
+    "graphql": "^0.13.2",
     "prettier": "^1.9.1"
   },
   "devDependencies": {
