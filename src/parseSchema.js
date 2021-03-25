@@ -1,4 +1,4 @@
-const { buildSchema, introspectionQuery, graphql } = require('graphql');
+const { buildSchema, getIntrospectionQuery, graphql } = require('graphql');
 
 module.exports = async function parseSchema(rawSchemaContent, pathToSchema) {
   const schemaType = pathToSchema.split('.').pop();
@@ -13,7 +13,7 @@ module.exports = async function parseSchema(rawSchemaContent, pathToSchema) {
       const graphqlSchema = buildSchema(rawSchemaContent);
       const jsonIntrospectionSchema = await graphql(
         graphqlSchema,
-        introspectionQuery,
+        getIntrospectionQuery(),
         {}
       );
       schema = jsonIntrospectionSchema;

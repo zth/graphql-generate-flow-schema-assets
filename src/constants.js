@@ -1,5 +1,6 @@
 const prettierConfig = {
-  singleQuote: true
+  singleQuote: true,
+  parser: 'babel',
 };
 
 const fileHeader = `// @flow
